@@ -1,0 +1,17 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >     
+
+  <stroke
+       android:width="0.2dp"    
+       android:color="#C4C4C4"/>  
+
+   <solid android:background="@drawable/home_bg" />     
+      
+   <padding         
+       android:bottom="8dp"        
+       android:left="8dp"         
+       android:right="6dp"
+       android:top="8dp" />      
+
+   <corners android:radius="4dp" />  
+
+</shape>

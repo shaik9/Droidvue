@@ -1,0 +1,148 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_bg"
+    android:orientation="horizontal"
+    tools:context=".HomeActivity" >
+
+    <LinearLayout
+        android:id="@+id/home_listview_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_weight="6"
+        android:alpha="0.8"
+        android:background="@drawable/lv_bg"
+        android:layoutAnimation="@anim/animation"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="130dp" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:alpha="0.8"
+            android:layoutAnimation="@anim/lbl_animation"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_menuname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="1.0"
+                android:background="@drawable/top_header_bg"
+                android:gravity="center"
+                android:layoutAnimation="@anim/lbl_animation"
+                android:text="@string/movies"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/srch_layout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="40dp"
+            android:background="@drawable/search_bg"
+            android:orientation="horizontal"
+            android:visibility="invisible" >
+
+            <EditText
+                android:id="@+id/search_et"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight=".80"
+                android:background="@drawable/search_box"
+                android:paddingLeft="15dp"
+                android:textColor="#FFFFFF"
+                android:textCursorDrawable="@null" >
+            </EditText>
+
+            <Button
+                android:id="@+id/search_btn"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight=".20"
+                android:background="@drawable/search_btn"
+                android:text="@string/search"
+                android:textColor="#FFFFFF"
+                android:onClick="onSearchButtonClick" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/frag_rel_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|fill_vertical"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible" >
+
+            <Button
+                android:id="@+id/lf_button"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="25dp"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@color/left_btn_selector"
+                android:gravity="center_vertical" />
+
+            <GridView
+                android:id="@+id/grid_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/rt_button"
+                android:layout_toRightOf="@+id/lf_button"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="25dp"
+                android:numColumns="5" />
+
+                <com.hugo.viewpager.CirclePageIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/pg_indc_bg"
+                    android:padding="10dip"
+                    app:fillColor="#00C6FF"
+                    app:pageColor="#000000"
+                    app:radius="10dp"
+                    app:strokeColor="#FF000000"
+                    app:strokeWidth="2dp" />
+
+                <Button
+                    android:id="@+id/rt_button"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="25dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/right_btn_selector"
+                    android:gravity="center_vertical" />
+            
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

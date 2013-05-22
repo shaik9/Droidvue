@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Droidvue</string>
+    <string name="action_settings">Settings</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="movies">Movies</string>
+    <string name="menu_name">Menu Name</string>
+    <string name="server_url">https://183.82.98.11:8443/mifosng-provider/api/v1/</string>
+    <string-array
+        name="main_menu_arr">
+        <item>"TV Channels"</item>
+        <item>"Program Guide"</item>
+        <item>"Movies"</item>
+        <item>"Personal Account"</item>
+        <item>"None"</item>
+    </string-array>
+    <string-array
+        name="movie_menu_arr">
+        <item>"Salmankhan"</item>
+        <item>"Sharukhan"</item>
+        <item>"Amithab"</item>
+        <item>"Amirkhan"</item>
+    </string-array>
+    
+      <string-array name="Http_arrays">
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+    <string name="search">Search</string>
+    </resources>
