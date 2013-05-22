@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.hugo.imagehandler.SmartImageView;
+import com.hugo.imagehandler.WebImage;
 
 public class CustomGridViewAdapter extends BaseAdapter {
 	private List<MovieObj> movieList;
@@ -48,10 +50,7 @@ public class CustomGridViewAdapter extends BaseAdapter {
 		MovieObj movBean = movieList.get(position);
 		SmartImageView siv = ((SmartImageView) layout
 				.findViewById(R.id.gridview_img));
-		siv.setImageUrl(movBean.getImage());
-		((ImageView) layout.findViewById(R.id.gridview_rating_img))
-				.setImageResource(R.drawable.rating);
-
+		siv.setImageUrl(movBean.getImage());		
 		((ImageView) layout.findViewById(R.id.gridview_rating_img))
 				.setImageResource(context.getResources().getIdentifier(
 						"rate" + movBean.getRating().replace('.', '_'),

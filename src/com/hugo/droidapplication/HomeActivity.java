@@ -262,8 +262,10 @@ public class HomeActivity extends FragmentActivity {
 				@Override
 				public void onItemSelected(AdapterView<?> arg0, View arg1,
 						int arg2, long arg3) {
+					if(arg1!=null){
 					arg1.startAnimation(AnimationUtils.loadAnimation(
 							HomeActivity.this, R.anim.zoom_selection));
+					}
 				}
 
 				@Override

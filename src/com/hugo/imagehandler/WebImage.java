@@ -11,6 +11,9 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import com.hugo.droidapplication.Utilities;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -111,7 +114,6 @@ public class WebImage implements SmartImage {
         } catch(Exception e) {
             e.printStackTrace();
         }
-
         return bitmap;
     }
 

@@ -325,11 +325,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int default_title_indicator_selected_color=0x7f0a000e;
         public static final int default_title_indicator_text_color=0x7f0a000f;
         public static final int default_underline_indicator_selected_color=0x7f0a0010;
-        public static final int left_btn_selector=0x7f0a0011;
-        public static final int listgrad=0x7f0a0012;
-        public static final int rent_btn_selector=0x7f0a0013;
-        public static final int right_btn_selector=0x7f0a0014;
-        public static final int text_selector=0x7f0a0015;
+        public static final int gv_img_selector=0x7f0a0011;
+        public static final int left_btn_selector=0x7f0a0012;
+        public static final int listgrad=0x7f0a0013;
+        public static final int rent_btn_selector=0x7f0a0014;
+        public static final int right_btn_selector=0x7f0a0015;
+        public static final int text_selector=0x7f0a0016;
         public static final int vpi__background_holo_dark=0x7f0a0000;
         public static final int vpi__background_holo_light=0x7f0a0001;
         public static final int vpi__bright_foreground_disabled_holo_dark=0x7f0a0004;
@@ -365,37 +366,40 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class drawable {
         public static final int border2=0x7f020000;
         public static final int border_frame=0x7f020001;
-        public static final int home_bg=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int icon=0x7f020004;
-        public static final int lv_bg=0x7f020005;
-        public static final int nx_btn_normal=0x7f020006;
-        public static final int nx_btn_pressed=0x7f020007;
-        public static final int pg_indc_bg=0x7f020008;
-        public static final int play_img=0x7f020009;
-        public static final int prev_btn_normal=0x7f02000a;
-        public static final int prev_btn_pressed=0x7f02000b;
-        public static final int rate0_5=0x7f02000c;
-        public static final int rate1_0=0x7f02000d;
-        public static final int rate1_5=0x7f02000e;
-        public static final int rate2_0=0x7f02000f;
-        public static final int rate2_5=0x7f020010;
-        public static final int rate3_0=0x7f020011;
-        public static final int rate3_5=0x7f020012;
-        public static final int rate4_0=0x7f020013;
-        public static final int rate4_5=0x7f020014;
-        public static final int rate5_0=0x7f020015;
-        public static final int rating=0x7f020016;
-        public static final int realsteel=0x7f020017;
-        public static final int rent_btn_normal=0x7f020018;
-        public static final int rent_btn_pressed=0x7f020019;
-        public static final int search_bg=0x7f02001a;
-        public static final int search_box=0x7f02001b;
-        public static final int search_btn=0x7f02001c;
-        public static final int top_header_bg=0x7f02001d;
-        public static final int tv_logo=0x7f02001e;
-        public static final int vod=0x7f02001f;
-        public static final int watchnow=0x7f020020;
+        public static final int gv_item_bg=0x7f020002;
+        public static final int home_bg=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int icon=0x7f020005;
+        public static final int img_hover=0x7f020006;
+        public static final int lv_bg=0x7f020007;
+        public static final int nx_btn_normal=0x7f020008;
+        public static final int nx_btn_pressed=0x7f020009;
+        public static final int pg_indc_bg=0x7f02000a;
+        public static final int play_img=0x7f02000b;
+        public static final int prev_btn_normal=0x7f02000c;
+        public static final int prev_btn_pressed=0x7f02000d;
+        public static final int rate0_5=0x7f02000e;
+        public static final int rate1_0=0x7f02000f;
+        public static final int rate1_5=0x7f020010;
+        public static final int rate2_0=0x7f020011;
+        public static final int rate2_5=0x7f020012;
+        public static final int rate3_0=0x7f020013;
+        public static final int rate3_5=0x7f020014;
+        public static final int rate4_0=0x7f020015;
+        public static final int rate4_5=0x7f020016;
+        public static final int rate5_0=0x7f020017;
+        public static final int rating=0x7f020018;
+        public static final int realsteel=0x7f020019;
+        public static final int rent_btn_normal=0x7f02001a;
+        public static final int rent_btn_pressed=0x7f02001b;
+        public static final int sample_image=0x7f02001c;
+        public static final int search_bg=0x7f02001d;
+        public static final int search_box=0x7f02001e;
+        public static final int search_btn=0x7f02001f;
+        public static final int top_header_bg=0x7f020020;
+        public static final int tv_logo=0x7f020021;
+        public static final int vod=0x7f020022;
+        public static final int watchnow=0x7f020023;
     }
     public static final class id {
         public static final int VideoView=0x7f090033;
@@ -475,11 +479,25 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
+        public static final int cast_crew=0x7f06000e;
+        public static final int directed_by=0x7f060009;
+        public static final int duration=0x7f06000c;
+        public static final int genere=0x7f06000b;
+        public static final int hd=0x7f060011;
+        public static final int hdx=0x7f060010;
+        public static final int language=0x7f06000d;
         public static final int main_menu=0x7f060002;
         public static final int menu_name=0x7f060004;
         public static final int movies=0x7f060003;
+        /**  movieDetails 
+         */
+        public static final int rating=0x7f060007;
+        public static final int rating_stars=0x7f060008;
+        public static final int rent=0x7f06000f;
+        public static final int sd=0x7f060012;
         public static final int search=0x7f060006;
         public static final int server_url=0x7f060005;
+        public static final int written_by=0x7f06000a;
     }
     public static final class style {
         /** 

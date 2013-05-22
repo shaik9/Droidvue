@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"    >
-    <RelativeLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/mvdtls_rlayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,8 +17,7 @@
              android:layout_alignParentTop="true"
              android:layout_marginTop="10dp"
              android:layout_below="@+id/mvdtls_rlayout1"
-             android:scaleType="fitXY"/>
-             <!-- android:src="@drawable/realsteel"/> -->             
+             android:scaleType="fitXY"/>   
         <TextView
         android:id="@+id/mvdtls_rating_tv"
         android:layout_width="wrap_content"
@@ -30,14 +26,14 @@
         android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
         android:layout_below="@+id/mvdtls_mov_img"
-        android:text="Rating"
+        android:text="@string/rating"
         android:textColor="#C4C4C4"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="left" />
 
         <ImageView
             android:id="@+id/mvdtls_rating_img"
-            android:contentDescription="ratingStars"
+            android:contentDescription="@string/rating_stars"
             android:layout_width="200dp"
             android:layout_height="25dp"
             android:layout_marginLeft="3dp"
@@ -45,7 +41,6 @@
             android:layout_marginTop="4dp"
             android:layout_below="@+id/mvdtls_mov_img"
             android:layout_toRightOf="@+id/mvdtls_rating_tv"/>
-            <!-- android:src="@drawable/rating"            /> -->
 
         <TextView
             android:id="@+id/mvdtls_title_tv"
@@ -58,7 +53,6 @@
             android:textStyle="bold"
             android:typeface="sans"
             android:textSize="25sp"/>
-        <!-- android:text="BusinessMan"/> -->
 
         <TextView
             android:id="@+id/mvdtls_descr_tv"
@@ -73,7 +67,6 @@
             android:textColor="#FFFFFF"
             android:lineSpacingExtra="0.5dp"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
-            <!-- android:text="Set in the near future, where robot boxing is a top sport, a struggling promoter feels he's found a champion in a discarded robot. During his hopeful rise to the top, he discovers he has an 11-year-old son who wants to know his father.The amount of vandalism a wiki receives depends on how open the wiki is. For instance, some wikis allow unregistered users, identified by their IP addresses, to edit content, whilst others limit this function to just registered users. Most wikis allow anonymous editing without an account,[26] but give registered users additional editing functions; on most wikis, becoming a registered user is a short and simple process. Some wikis require an additional waiting period before gaining access to certain tools. For example, on the English Wikipedia, registered users can rename pages only if their account is at least four days old. Other wikis such as the Portuguese Wikipedia use an editing requirement instead of a time requirement, granting extra tools after the user has made a certain number of edits to prove"/> -->
             
          <TableLayout
              android:id="@+id/mvdtls_tab_layout"
@@ -97,7 +90,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.2"
                     android:layout_height="wrap_content"
-                    android:text="DirectedBy"
+                    android:text="@string/directed_by"
                     android:textColor="#C4C4C4"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -108,7 +101,6 @@
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
-                    <!-- android:text="Stepenspeelburg"/> -->
             </TableRow>
 
             <TableRow
@@ -122,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#C4C4C4"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="WrittenBy" />
+                    android:text="@string/written_by" />
 
                 <TextView
                     android:id="@+id/mvdtls_writby_val_tv"
@@ -131,7 +123,6 @@
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
-                    <!-- android:text="Stepenspeelburg" -->
                     
             </TableRow>
 
@@ -146,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#C4C4C4"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Genere" />
+                    android:text="@string/genere" />
 
                 <TextView
                     android:id="@+id/mvdtls_genere_val_tv"
@@ -155,7 +146,6 @@
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
-                    <!-- android:text="Stepenspeelburg" -->                    
             </TableRow>
             <TableRow
                 android:id="@+id/mvdtls_durn_tab_row"
@@ -168,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#C4C4C4"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Duration" />
+                    android:text="@string/duration" />
 
                 <TextView
                     android:id="@+id/mvdtls_durn_val_tv"
@@ -177,7 +167,6 @@
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
-                    <!-- android:text="Stepenspeelburg" -->
             </TableRow>
             
              <TableRow
@@ -191,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#C4C4C4"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Language" />
+                    android:text="@string/language" />
 
                 <TextView
                     android:id="@+id/mvdtls_lang_val_tv"
@@ -200,7 +189,6 @@
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
-                    <!-- android:text="Stepenspeelburg" -->
             </TableRow>
             
               <TableRow
@@ -215,7 +203,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#C4C4C4"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Cast and Crew" />
+                    android:text="@string/cast_crew" />
 
                 <TextView
                     android:id="@+id/mvdtls_cast_val_tv"
@@ -224,7 +212,6 @@
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
-                    <!-- android:text="suneel"/> -->
             </TableRow>
         </TableLayout>
 
@@ -251,7 +238,8 @@
              android:background="@color/rent_btn_selector"
              android:textColor="#FFFFFF"
              android:layout_margin="5dp"
-             android:text="HDX"
+             android:text="@string/hdx"
+             android:focusable="true"
              android:onClick="ButtonOnClick" />
 
          <Button
@@ -265,7 +253,9 @@
              android:visibility="gone"
              android:textColor="#FFFFFF"
              android:layout_margin="5dp"
-             android:text="HD"
+             android:focusable="true"
+             android:text="@string/hd"
+             
              android:onClick="ButtonOnClick" />
           <Button
              android:id="@+id/mvdtls_sd_btn"
@@ -278,214 +268,7 @@
              android:visibility="gone"
              android:layout_margin="5dp"
              android:textColor="#FFFFFF"
-             android:text="SD"
+             android:focusable="true"
+             android:text="@string/sd"
              android:onClick="ButtonOnClick" />  
-</RelativeLayout>
- <!-- 
-   <ImageView
-        android:id="@+id/mvdtls_play_img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignLeft="@+id/mvdtls_rlayout1"
-        android:layout_below="@+id/mvdtls_rlayout1"
-        android:layout_margin="5dp"
-        android:src="@drawable/play_img" />
-
-     <TableLayout
-        android:id="@+id/mvdtls_buy_rent_tablayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/mvdtls_play_img"
-        android:layout_alignRight="@+id/mvdtls_rlayout1"
-        android:layout_alignTop="@+id/mvdtls_play_img"
-        android:layout_toRightOf="@+id/mvdtls_play_img"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="20dp">
-
-        <TableRow
-            android:id="@+id/mvdtls_rental_tbl_row"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-
-            <TextView
-                android:id="@+id/mvdtls_rental_tv"
-                android:layout_width="0dp"
-                android:layout_weight="0.1"
-                android:layout_height="wrap_content"
-                android:textColor="#C4C4C4"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="Rental" />
-            
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical|center_horizontal" >
-                
-                <Button
-                android:id="@+id/mvdtls_rental_hdx_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:background="@drawable/hdx"
-                />
-                 
-                 <TextView
-                android:id="@+id/mvdtls_rental_hdx_val_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#C4C4C4"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="$5.00" />
-                
-            </LinearLayout>
-             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                
-                <Button
-                android:id="@+id/mvdtls_rental_hd_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:background="@drawable/hd"
-                />
-                 
-                 <TextView
-                android:id="@+id/mvdtls_rental_hd_val_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#C4C4C4"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="$3.50" />
-                
-            </LinearLayout>
-             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
-                
-                <Button
-                android:id="@+id/mvdtls_rental_sd_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/sd"
-                android:layout_gravity="center_vertical|center_horizontal"
-                />
-                 
-                 <TextView
-                android:id="@+id/mvdtls_rental_sd_val_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#C4C4C4"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="$2.5" />
-                
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/mvdtls_own_tbl_row"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/mvdtls_own_tv"
-                android:layout_width="0dp"
-                android:layout_weight="0.1"
-                android:layout_height="wrap_content"
-                android:textColor="#C4C4C4"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="Own/Buy" />
-            
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                
-                <Button
-                android:id="@+id/mvdtls_own_hdx_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:background="@drawable/hdx"
-                />
-                 
-                 <TextView
-                android:id="@+id/mvdtls_own_hdx_val_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#C4C4C4"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="$15.00" />
-                
-            </LinearLayout>
-             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                
-                <Button
-                android:id="@+id/mvdtls_own_hd_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:background="@drawable/hd"
-                />
-                 
-                 <TextView
-                android:id="@+id/mvdtls_own_hd_val_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                 android:textColor="#C4C4C4"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="$13.50" />
-                
-            </LinearLayout>
-             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                
-                <Button
-                android:id="@+id/mvdtls_own_sd_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:background="@drawable/sd"
-                />
-                 
-                 <TextView
-                android:id="@+id/mvdtls_own_sd_val_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                 android:textColor="#C4C4C4"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:text="$10.00" />
-                
-            </LinearLayout>
-        </TableRow>
-
-       
-    </TableLayout>
-    -->
 </RelativeLayout>

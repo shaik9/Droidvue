@@ -34,4 +34,18 @@
         <item>India</item>
     </string-array>
     <string name="search">Search</string>
+    <!-- movieDetails -->
+    <string name="rating">Rating</string>
+    <string name="rating_stars">Rating Stars</string>
+    <string name="directed_by">DirectedBy</string>
+    <string name="written_by">WrittenBy</string>
+    <string name="genere">Genere</string>
+    <string name="duration">Duration</string>
+    <string name="language">Language</string>
+    <string name="cast_crew">Cast&amp;Crew</string>
+    <string name="rent">Rent</string>
+    <string name="hdx">HDX</string>
+    <string name="hd">HD</string>
+    <string name="sd">SD</string>
+    
     </resources>

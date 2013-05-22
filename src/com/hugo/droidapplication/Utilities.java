@@ -28,6 +28,8 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
@@ -229,4 +231,67 @@ public class Utilities {
 		}
 		return false;
 	}
+	
+	public static Bitmap scaleImage(Context context, Bitmap bitmap,int reqScale)
+	{
+		// reqScale in dp
+	   /* // Get the ImageView and its bitmap
+	    ImageView view = (ImageView) findViewById(R.id.image_box);
+	    Drawable drawing = view.getDrawable();
+	    if (drawing == null) {
+	        return; // Checking for null & return, as suggested in comments
+	    }
+	    Bitmap bitmap = ((BitmapDrawable)drawing).getBitmap();*/
+
+	    // Get current dimensions AND the desired bounding box
+	    int width = bitmap.getWidth();
+	    int height = bitmap.getHeight();
+	    
+	    float density = context.getResources().getDisplayMetrics().density;
+	    int bounding = Math.round((float)reqScale * density);;
+	    
+	    Log.i("Test", "original width = " + Integer.toString(width));
+	    Log.i("Test", "original height = " + Integer.toString(height));
+	    Log.i("Test", "bounding = " + Integer.toString(bounding));
+
+	    // Determine how much to scale: the dimension requiring less scaling is
+	    // closer to the its side. This way the image always stays inside your
+	    // bounding box AND either x/y axis touches it.  
+	    float xScale = ((float) bounding) / width;
+	    float yScale = ((float) bounding) / height;
+	    float scale = (xScale <= yScale) ? xScale : yScale;
+	    Log.i("Test", "xScale = " + Float.toString(xScale));
+	    Log.i("Test", "yScale = " + Float.toString(yScale));
+	    Log.i("Test", "scale = " + Float.toString(scale));
+
+	    // Create a matrix for the scaling and add the scaling data
+	    Matrix matrix = new Matrix();
+	    matrix.postScale(scale, scale);
+
+	    // Create a new bitmap and convert it to a format understood by the ImageView 
+	    Bitmap scaledBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+	   /* width = scaledBitmap.getWidth(); // re-use
+	    height = scaledBitmap.getHeight(); // re-use
+	    BitmapDrawable result = new BitmapDrawable(scaledBitmap);*/
+	    Log.i("Test", "scaled width = " + Integer.toString(width));
+	    Log.i("Test", "scaled height = " + Integer.toString(height));
+
+	    // Apply the scaled bitmap
+	    /*view.setImageDrawable(result);
+
+	    // Now change ImageView's dimensions to match the scaled image
+	    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams(); 
+	    params.width = width;
+	    params.height = height;
+	    view.setLayoutParams(params);*/
+
+	    Log.i("Test", "done");
+	    return scaledBitmap;
+	}
+
+	/*static int dpToPx(int dp)
+	{
+	    float density = getApplicationContext().getResources().getDisplayMetrics().density;
+	    return Math.round((float)dp * density);
+	}*/
 }
