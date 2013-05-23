@@ -18,13 +18,6 @@ import android.widget.VideoView;
 public class Video extends Activity{
 	
 	
-	// Put in your Video URL here
-	//private String VideoURL ="http://183.82.98.11:1935/vod/mp4:Sample.mp4/playlist.m3u8";//"rtsp://183.82.98.11:1935/vod/mp4:BigBuckBunny_115k.mov";//"rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov"; //"http://183.82.98.11:1935/vod/mp4:sample.mp4/playlist.m3u8";//"http://183.82.98.11:1935/vod/mp4:sample1.mp4/playlist.m3u8";//"rtsp://183.82.98.11:1935/vod/sample.mp4 ";//"http://183.82.98.11:1935/vod/mp4:sample1.mp4/playlist.m3u8";//"http://192.168.2.38:1935/vod/sample.mp4";//"http://www.androidbegin.com/tutorial/AndroidCommercial.3gp";
-	// Declare some variables
-	 //String  VideoURL= getIntent().getStringExtra("url");
-	//Bundle bdl ;
-    // String VideoURL=this.getIntent().getStringExtra("url");
-     //String VideoURL = bdl.getString("url");
 	private ProgressDialog pDialog;
 	VideoView videoview;
 
@@ -120,8 +113,9 @@ public class Video extends Activity{
 	
 	 public boolean onKeyDown(int keyCode, KeyEvent event) {
 		  // TODO Auto-generated method stub
-		  super.onKeyDown(keyCode, event);
-		  return true;
+		  if(keyCode==KeyEvent.KEYCODE_BACK)
+			  this.finish();
+		  return  super.onKeyDown(keyCode, event);
 		 }
 		 @Override
 		 public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -168,7 +162,7 @@ public class Video extends Activity{
 						        }
 						        
 						  else
-		  super.onKeyDown(keyCode, event);
+		  super.onKeyUp(keyCode, event);
 		  return true;
 		 }
 

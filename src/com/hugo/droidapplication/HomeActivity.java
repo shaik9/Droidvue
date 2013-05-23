@@ -172,10 +172,13 @@ public class HomeActivity extends FragmentActivity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			Log.d(TAG, "onPreExecute");
-			mProgressDialog = new ProgressDialog(HomeActivity.this,ProgressDialog.THEME_HOLO_DARK);
-			mProgressDialog.setMessage("Retrieving Details...");
-			mProgressDialog.setCancelable(true);
-			mProgressDialog.show();
+			if(mProgressDialog==null)
+			{
+				mProgressDialog = new ProgressDialog(HomeActivity.this,ProgressDialog.THEME_HOLO_DARK);
+				mProgressDialog.setMessage("Retrieving Details...");
+				mProgressDialog.setCancelable(true);
+				mProgressDialog.show();	
+			}
 		}
 
 		@Override

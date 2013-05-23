@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 
 import com.hugo.imagehandler.SmartImageView;
@@ -51,10 +52,7 @@ public class CustomGridViewAdapter extends BaseAdapter {
 		SmartImageView siv = ((SmartImageView) layout
 				.findViewById(R.id.gridview_img));
 		siv.setImageUrl(movBean.getImage());		
-		((ImageView) layout.findViewById(R.id.gridview_rating_img))
-				.setImageResource(context.getResources().getIdentifier(
-						"rate" + movBean.getRating().replace('.', '_'),
-						"drawable", "com.hugo.droidapplication"));
+		((RatingBar) layout.findViewById(R.id.gridview_rating_bar)).setRating(Float.parseFloat(movBean.getRating()));
 		return layout;
 	}
 }

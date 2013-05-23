@@ -3,7 +3,6 @@
 
     <string name="app_name">Droidvue</string>
     <string name="action_settings">Settings</string>
-    <string name="main_menu">Main Menu</string>
     <string name="movies">Movies</string>
     <string name="menu_name">Menu Name</string>
     <string name="server_url">https://183.82.98.11:8443/mifosng-provider/api/v1/</string>
@@ -15,14 +14,6 @@
         <item>"Personal Account"</item>
         <item>"None"</item>
     </string-array>
-    <string-array
-        name="movie_menu_arr">
-        <item>"Salmankhan"</item>
-        <item>"Sharukhan"</item>
-        <item>"Amithab"</item>
-        <item>"Amirkhan"</item>
-    </string-array>
-    
       <string-array name="Http_arrays">
         <item>Malaysia</item>
         <item>United States</item>
@@ -46,6 +37,5 @@
     <string name="rent">Rent</string>
     <string name="hdx">HDX</string>
     <string name="hd">HD</string>
-    <string name="sd">SD</string>
-    
+    <string name="sd">SD</string>  
     </resources>

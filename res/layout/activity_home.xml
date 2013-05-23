@@ -11,8 +11,8 @@
         android:id="@+id/home_listview_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:layout_weight="6"
+        android:layout_margin="8dp"
+        android:layout_weight="5"
         android:alpha="0.8"
         android:background="@drawable/lv_bg"
         android:layoutAnimation="@anim/animation"
@@ -22,9 +22,10 @@
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="9dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="130dp" >
+
         </ListView>
     </LinearLayout>
 
@@ -58,8 +59,8 @@
         <LinearLayout
             android:id="@+id/srch_layout"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_margin="40dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:background="@drawable/search_bg"
             android:orientation="horizontal"
             android:visibility="invisible" >
@@ -85,63 +86,56 @@
                 android:layout_margin="10dp"
                 android:layout_weight=".20"
                 android:background="@drawable/search_btn"
+                android:onClick="onSearchButtonClick"
                 android:text="@string/search"
-                android:textColor="#FFFFFF"
-                android:onClick="onSearchButtonClick" />
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/frag_rel_layout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_gravity="center_vertical|fill_vertical"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:visibility="invisible" >
 
             <Button
                 android:id="@+id/lf_button"
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="25dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
+                android:layout_margin="10dp"
                 android:background="@color/left_btn_selector"
                 android:gravity="center_vertical" />
 
             <GridView
                 android:id="@+id/grid_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="85dp"
+                android:layout_marginTop="95dp"
                 android:layout_toLeftOf="@+id/rt_button"
                 android:layout_toRightOf="@+id/lf_button"
+                android:columnWidth="100dp"
                 android:horizontalSpacing="5dp"
-                android:verticalSpacing="25dp"
-                android:numColumns="5" />
+                android:numColumns="5"
+                android:stretchMode="spacingWidthUniform"
+                android:verticalSpacing="25dp" />
 
-                <com.hugo.viewpager.CirclePageIndicator
-                    android:id="@+id/indicator"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/pg_indc_bg"
-                    android:padding="10dip"
-                    app:fillColor="#00C6FF"
-                    app:pageColor="#000000"
-                    app:radius="10dp"
-                    app:strokeColor="#FF000000"
-                    app:strokeWidth="2dp" />
-
-                <Button
-                    android:id="@+id/rt_button"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="25dp"
-                    android:layout_height="100dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@color/right_btn_selector"
-                    android:gravity="center_vertical" />
-            
+            <Button
+                android:id="@+id/rt_button"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:background="@color/right_btn_selector"
+                android:gravity="center_vertical" />
         </RelativeLayout>
     </LinearLayout>
 
