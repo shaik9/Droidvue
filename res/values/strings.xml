@@ -25,6 +25,8 @@
         <item>India</item>
     </string-array>
     <string name="search">Search</string>
+    <string name="ok">OK</string>
+    
     <!-- movieDetails -->
     <string name="rating">Rating</string>
     <string name="rating_stars">Rating Stars</string>

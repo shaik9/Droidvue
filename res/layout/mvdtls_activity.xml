@@ -16,7 +16,6 @@
             android:layout_marginLeft="140dp"
             android:layout_marginBottom="70dp"
             android:layout_gravity="center"
-            android:focusable="true"
             android:visibility="invisible">
 
            <com.hugo.imagehandler.SmartImageView
@@ -41,7 +40,19 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="left" />
 
-        <ImageView
+           <RatingBar
+        android:id="@+id/mvdtls_rating_img"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/mvdtls_mov_img"
+         android:layout_marginTop="7dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/mvdtls_rating_tv"
+        android:numStars = "5"/>
+           
+       <!--  <ImageView
             android:id="@+id/mvdtls_rating_img"
             android:contentDescription="@string/rating_stars"
             android:layout_width="200dp"
@@ -50,7 +61,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="4dp"
             android:layout_below="@+id/mvdtls_mov_img"
-            android:layout_toRightOf="@+id/mvdtls_rating_tv"/>
+            android:layout_toRightOf="@+id/mvdtls_rating_tv"/> -->
 
         <TextView
             android:id="@+id/mvdtls_title_tv"
@@ -231,8 +242,9 @@
              android:layout_height="wrap_content"
              android:layout_alignParentLeft="true"
              android:layout_below="@+id/mvdtls_rating_img"
-             android:text="Rent"
+             android:text="@string/rent"
              android:layout_marginLeft="5dp"
+             android:layout_marginTop="10dp"
              android:textColor="#C4C4C4"
              android:visibility="gone"
              android:textAppearance="?android:attr/textAppearanceMedium">
@@ -250,8 +262,6 @@
              android:textColor="#FFFFFF"
              android:layout_margin="5dp"
              android:text="@string/hdx"
-             android:focusable="true"
-             android:focusableInTouchMode="true"
              android:onClick="ButtonOnClick"/>
          <Button
              android:id="@+id/mvdtls_hd_btn"
@@ -264,8 +274,6 @@
              android:visibility="gone"
              android:textColor="#FFFFFF"
              android:layout_margin="5dp"
-             android:focusable="true"
-             android:focusableInTouchMode="true"
              android:text="@string/hd"
              
              android:onClick="ButtonOnClick" />
@@ -280,8 +288,6 @@
              android:visibility="gone"
              android:layout_margin="5dp"
              android:textColor="#FFFFFF"
-             android:focusable="true"
-             android:focusableInTouchMode="true"
              android:text="@string/sd"
              android:onClick="ButtonOnClick" />  
         </RelativeLayout>

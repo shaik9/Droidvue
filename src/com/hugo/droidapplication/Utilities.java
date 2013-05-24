@@ -1,15 +1,10 @@
 package com.hugo.droidapplication;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.util.HashMap;
 
 import org.apache.http.HttpEntity;
@@ -22,14 +17,12 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
@@ -38,55 +31,9 @@ import android.util.Log;
 public class Utilities {
 
 	private static final String TAG = "Utilities";
-	private static final int IO_BUFFER_SIZE = 4 * 1024;
-
-	public static Bitmap loadBitmap(String url) {
-		Bitmap bitmap = null;
-		InputStream in = null;
-		BufferedOutputStream out = null;
-
-		try {
-			in = new BufferedInputStream(new URL(url).openStream(),
-					IO_BUFFER_SIZE);
-
-			final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
-			out = new BufferedOutputStream(dataStream, IO_BUFFER_SIZE);
-			// copy(in, out);
-			out.flush();
-
-			final byte[] data = dataStream.toByteArray();
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			// options.inSampleSize = 1;
-
-			bitmap = BitmapFactory.decodeByteArray(data, 0, data.length,
-					options);
-		} catch (IOException e) {
-			Log.e(TAG, "Could not load Bitmap from: " + url);
-		} finally {
-			closeStream(in);
-			closeStream(out);
-		}
-
-		return bitmap;
-	}
-
-	/**
-	 * Closes the specified stream.
-	 * 
-	 * @param stream
-	 *            The stream to close.
-	 */
-	private static void closeStream(Closeable stream) {
-		if (stream != null) {
-			try {
-				stream.close();
-			} catch (IOException e) {
-				android.util.Log.e(TAG, "Could not close stream", e);
-			}
-		}
-	}
-
-	public static String callExternalApiGetMethod(Context context,
+	//private static ResponseObj resObj;
+	
+	public static ResponseObj callExternalApiGetMethod(Context context,
 			HashMap<String, String> param) {
 		Log.d(TAG, "callExternalApiGetMethod");
 		StringBuilder builder = new StringBuilder();
@@ -111,12 +58,15 @@ public class Utilities {
 		httpGet.setHeader("Content-Type", "application/json");
 
 		Log.i("callClientsApi", "Calling " + httpGet.getURI());
+		ResponseObj resObj = new ResponseObj();
 		try {
 			HttpResponse response = client.execute(httpGet);
 			StatusLine statusLine = response.getStatusLine();
 			int statusCode = statusLine.getStatusCode();
+			
+			HttpEntity entity ;
 			if (statusCode == 200) {
-				HttpEntity entity = response.getEntity();
+				entity = response.getEntity();
 				InputStream content = entity.getContent();
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(content));
@@ -124,20 +74,28 @@ public class Utilities {
 				while ((line = reader.readLine()) != null) {
 					builder.append(line);
 				}
+				resObj.setSuccessResponse(statusCode, builder.toString());
 			} else {
-				Log.e("callExternalAPI", "Failed to download file" + statusCode);
+				entity = response.getEntity();
+				String content = EntityUtils.toString(entity);
+				String sError = new JSONObject(content).getJSONArray("errors").getJSONObject(0).getString("developerMessage");
+				resObj.setFailResponse(statusCode,sError );
+				Log.e("callExternalAPI", sError + statusCode);
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
+			resObj.setFailResponse(100,e.getMessage());
 		} catch (IOException e) {
 			e.printStackTrace();
+			resObj.setFailResponse(100,e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
+			resObj.setFailResponse(100,e.getMessage());
 		}
-		return builder.toString();
+		return resObj;
 	}
 
-	public static String callExternalApiPostMethod(Context context,
+	public static ResponseObj callExternalApiPostMethod(Context context,
 			HashMap<String, String> param) {
 		Log.d(TAG, "callExternalApi");
 		StringBuilder builder = new StringBuilder();
@@ -153,6 +111,7 @@ public class Utilities {
 		httpPost.setHeader("Content-Type", "application/json");
 		// append device id to url
 		String androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+		ResponseObj resObj = new ResponseObj();
 		try {
 			//json.put("deviceId",androidId);
 			json.put("deviceId","efa4c629924f8139");
@@ -186,8 +145,9 @@ public class Utilities {
 			HttpResponse response = client.execute(httpPost);
 			StatusLine statusLine = response.getStatusLine();
 			int statusCode = statusLine.getStatusCode();
+			HttpEntity entity;
 			if (statusCode == 200) {
-				HttpEntity entity = response.getEntity();
+				entity = response.getEntity();
 				InputStream content = entity.getContent();
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(content));
@@ -195,17 +155,25 @@ public class Utilities {
 				while ((line = reader.readLine()) != null) {
 					builder.append(line);
 				}
+				resObj.setSuccessResponse(statusCode, builder.toString());
 			} else {
-				Log.e("callExternalAPI", "Failed to download file" + statusCode);
+				entity = response.getEntity();
+				String content = EntityUtils.toString(entity);
+				String sError = new JSONObject(content).getJSONArray("errors").getJSONObject(0).getString("developerMessage");
+				resObj.setFailResponse(statusCode,sError );
+				Log.e("callExternalAPI", sError + statusCode);
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
+			resObj.setFailResponse(100,e.getMessage());
 		} catch (IOException e) {
 			e.printStackTrace();
+			resObj.setFailResponse(100,e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
+			resObj.setFailResponse(100,e.getMessage());
 		}
-		return builder.toString();
+		return resObj;
 	}
 
 	public static boolean isNetworkAvailable(Context context) {

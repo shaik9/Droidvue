@@ -16,10 +16,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +34,6 @@ public class MovieDetailsActivity extends FragmentActivity {
 	private final static String BOOKORDER = "BOOKORDER";
 	private final static String INVALID_REQUEST = "INVALID_REQUEST";
 	
-	private SharedPreferences mPrefs;
 	private ProgressDialog mProgressDialog;
 	String mediaId;
 	String eventId;
@@ -46,24 +47,7 @@ public class MovieDetailsActivity extends FragmentActivity {
 
 		Log.d(TAG, "onCreate");
 
-		mPrefs = getSharedPreferences(MovieDetailsActivity.PREFS_FILE, 0);
-		/*
-		 * mPrefsEditor = mPrefs.edit();
-		 * mPrefsEditor.putString(getString(R.string
-		 * .menu_name),getString(R.string.main_menu)); // set menu name
-		 * mPrefsEditor.commit();
-		 */
-
-		// mMenuName = (TextView) findViewById(R.id.tv_menuname);
-		// mSearchEt = (EditText) findViewById(R.id.search_et);
-		// mSearchBtn = (Button) findViewById(R.id.search_btn);
-		// mlistView = (ListView) findViewById(R.id.listView);
-
-		// mlistView.setDivider(null);
-		// mlistView.setSelector(R.color.listgrad);
-		// /mlistView.setAdapter(new ArrayAdapter<String>(
-		// MovieDetailsActivity.this, R.layout.lv_item, R.id.list_content,
-		// MenuData.mMap.get(getString(R.string.movies))));
+		
 		Bundle b = getIntent().getExtras();
 		mediaId = b.getString("MediaId");
 		eventId = b.getString("EventId");
@@ -135,13 +119,17 @@ public class MovieDetailsActivity extends FragmentActivity {
 		}
 	}
 
-	private class getDetailsAsynTask extends AsyncTask<String, Void, String> {
+	private class getDetailsAsynTask extends AsyncTask<String, Void, ResponseObj> {
 		private String taskName = "";
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
 			// Log.d(TAG, "onPreExecute");
+			if(mProgressDialog!= null){
+				mProgressDialog.dismiss();
+				mProgressDialog = null;
+			}
 			mProgressDialog = new ProgressDialog(MovieDetailsActivity.this,
 					ProgressDialog.THEME_HOLO_DARK);
 			mProgressDialog.setMessage("Retrieving Details...");
@@ -150,17 +138,10 @@ public class MovieDetailsActivity extends FragmentActivity {
 		}
 
 		@Override
-		protected String doInBackground(String... params) {
+		protected ResponseObj doInBackground(String... params) {
 			// Log.d(TAG, "doInBackground");
 			taskName = params[0];
-			/*
-			 * if (isNetworkAvailable()) {
-			 * 
-			 * return callExternalApi(params[0], params[1]);
-			 * 
-			 * } else { return NETWORK_ERROR; }
-			 */
-
+			ResponseObj resObj = new ResponseObj();
 			if (Utilities.isNetworkAvailable(MovieDetailsActivity.this
 					.getApplicationContext())) {
 				if (taskName.equalsIgnoreCase(GETMOVIEDETAILS)) {
@@ -169,9 +150,10 @@ public class MovieDetailsActivity extends FragmentActivity {
 					map.put("TagURL", "assetdetails/" + mediaId);
 					map.put("eventId", eventId);
 
-					return Utilities.callExternalApiGetMethod(
+					resObj= Utilities.callExternalApiGetMethod(
 							MovieDetailsActivity.this.getApplicationContext(),
 							map);
+					return resObj; 
 				} else if (taskName.equalsIgnoreCase(BOOKORDER)) {
 					HashMap<String, String> map = new HashMap<String, String>();
 					String sDateFormat = "yyyy-mm-dd";
@@ -185,32 +167,42 @@ public class MovieDetailsActivity extends FragmentActivity {
 					map.put("formatType", params[1]);
 					map.put("optType", params[2]);
 					map.put("eventId", eventId);
-					return Utilities.callExternalApiPostMethod(
+					
+					resObj= Utilities.callExternalApiPostMethod(
 							MovieDetailsActivity.this.getApplicationContext(),
 							map);
+					return resObj;
 				} else {
-					return INVALID_REQUEST;
+					resObj.setFailResponse(100, INVALID_REQUEST);
+					return resObj;
 				}
 			} else {
-				return NETWORK_ERROR;
+				resObj.setFailResponse(100, NETWORK_ERROR);
+				return resObj;
 			}
 
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
-			super.onPostExecute(result);
+		protected void onPostExecute(ResponseObj resObj) {
+			super.onPostExecute(resObj);
 			Log.d(TAG, "onPostExecute");
-			if (!result.equals("")) {
-				Log.d(TAG, result);
-				if (taskName.equalsIgnoreCase(GETMOVIEDETAILS)) {
-					updateUI(result);
+			
+			if(resObj.getStatusCode()==200){
+ 				if (taskName.equalsIgnoreCase(GETMOVIEDETAILS)) {
+					updateUI(resObj.getsResponse());
+					if (mProgressDialog.isShowing()) {
+						mProgressDialog.dismiss();
+					}
 				} else if (taskName.equalsIgnoreCase(BOOKORDER)) {
+					if (mProgressDialog.isShowing()) {
+						mProgressDialog.dismiss();
+					}
 					Intent intent = new Intent(MovieDetailsActivity.this,
 							Video.class);
 					try {
 						intent.putExtra("url",
-								((String) (new JSONObject(result))
+								((String) (new JSONObject(resObj.getsResponse()))
 										.get("resourceIdentifier")));
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
@@ -220,11 +212,22 @@ public class MovieDetailsActivity extends FragmentActivity {
 				}
 
 			} else {
-				// set no details for selection
-			}
-			if (mProgressDialog.isShowing()) {
-				mProgressDialog.dismiss();
-			}
+				if (mProgressDialog.isShowing()) {
+					mProgressDialog.dismiss();
+				}
+				AlertDialog.Builder builder = new AlertDialog.Builder(MovieDetailsActivity.this,AlertDialog.THEME_HOLO_DARK);
+				// Add the buttons
+				builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() { 
+				           public void onClick(DialogInterface dialog, int id) {
+				        	  // MovieDetailsActivity.this.finish();
+				           }
+				       });
+				AlertDialog dialog =builder.create();
+				dialog.setMessage(resObj.getsErrorMessage());
+				/*TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
+				messageText.setGravity(Gravity.CENTER);*/
+				dialog.show();
+			}	
 		}
 
 		public void updateUI(String result) {
@@ -235,12 +238,8 @@ public class MovieDetailsActivity extends FragmentActivity {
 						.parseMovieDetails(result);
 				((SmartImageView) findViewById(R.id.mvdtls_mov_img))
 						.setImageUrl(mvDtlsObj.getImage());
-				((ImageView) findViewById(R.id.mvdtls_rating_img))
-						.setImageResource(getResources().getIdentifier(
-								"rate"
-										+ mvDtlsObj.getRating().replace('.',
-												'_'), "drawable",
-								"com.hugo.droidapplication"));
+				
+				((RatingBar) findViewById(R.id.mvdtls_rating_img)).setRating(Float.parseFloat(mvDtlsObj.getRating()));
 				((TextView) findViewById(R.id.mvdtls_title_tv))
 						.setText(mvDtlsObj.getTitle());
 				((TextView) findViewById(R.id.mvdtls_descr_tv))

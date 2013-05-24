@@ -1,20 +1,17 @@
 package com.hugo.droidapplication;
 
 import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
@@ -85,6 +82,9 @@ public class HomeActivity extends FragmentActivity {
 			public void onItemClick(AdapterView<?> listview, View arg1,
 					int position, long arg3) {
 				mActionName = GETMOVIEDETAILSBYCATEGORY_ACTION;
+				if(mSearchEt.getText().toString().length()!=0){
+					mSearchEt.setText("");
+				}
 				mMenuName.setText(MenuData.mMap.get("Movies")[position]);
 					category = (String) MenuData.movCateg.get(position);
 					mPrefsEditor.putString(getString(R.string.menu_name), category);
@@ -102,6 +102,9 @@ public class HomeActivity extends FragmentActivity {
 
 				// TODO Auto-generated method stub
 				mActionName = GETMOVIEDETAILSBYCATEGORY_ACTION;
+				if(mSearchEt.getText().toString().length()!=0){
+					mSearchEt.setText("");
+				}
 				mMenuName.setText(MenuData.mMap.get("Movies")[position]);
 					category = (String) MenuData.movCateg.get(position);
 					mPrefsEditor.putString(getString(R.string.menu_name), category);
@@ -166,35 +169,37 @@ public class HomeActivity extends FragmentActivity {
 		}
 	}
 
-	private class GetDetailsAsynTask extends AsyncTask<String, Void, String> {
+	private class GetDetailsAsynTask extends AsyncTask<String, Void, ResponseObj> {
 		
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
 			Log.d(TAG, "onPreExecute");
-			if(mProgressDialog==null)
-			{
-				mProgressDialog = new ProgressDialog(HomeActivity.this,ProgressDialog.THEME_HOLO_DARK);
-				mProgressDialog.setMessage("Retrieving Details...");
-				mProgressDialog.setCancelable(true);
-				mProgressDialog.show();	
+			if(mProgressDialog!= null){
+				mProgressDialog.dismiss();
+				mProgressDialog = null;
 			}
+			mProgressDialog = new ProgressDialog(HomeActivity.this,ProgressDialog.THEME_HOLO_DARK);
+			//mProgressDialog.setTitle("Droidvue ");
+			mProgressDialog.setMessage("Retrieving Details...");
+			mProgressDialog.setCancelable(true);
+			mProgressDialog.show();	
 		}
 
 		@Override
-		protected String doInBackground(String... params) {
+		protected ResponseObj doInBackground(String... params) {
 			Log.d(TAG, "doInBackground");
+			ResponseObj resObj = new ResponseObj();
 			if (Utilities.isNetworkAvailable(getApplicationContext())) {
-
-				
 				if(mActionName.equalsIgnoreCase(GETMOVIEDETAILSBYCATEGORY_ACTION)){
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("TagURL", "assets");
 				map.put("filterType", category);
 				map.put("pageNo", pageNumber+"");
 
-				return Utilities.callExternalApiGetMethod(
+				resObj= Utilities.callExternalApiGetMethod(
 						getApplicationContext(), map);
+				return resObj;
 				}
 				else if(mActionName.equalsIgnoreCase(GETMOVIEDETAILSBYSEARCH_ACTION)){
 					HashMap<String, String> map = new HashMap<String, String>();
@@ -202,48 +207,68 @@ public class HomeActivity extends FragmentActivity {
 					map.put("filterType", category);
 					map.put("pageNo", pageNumber+"");
 
-					return Utilities.callExternalApiGetMethod(
+					resObj = Utilities.callExternalApiGetMethod(
 							getApplicationContext(), map);
+					return resObj;
 					}
 				else if(mActionName.equalsIgnoreCase(GETDEVICEID_ACTION)){
 					HashMap<String, String> map = new HashMap<String, String>();
 					map.put("TagURL", "mediadevices/efa4c629924f8139");
 				//	map.put("TagURL", "mediadevices/"+androidId);
-					return Utilities.callExternalApiGetMethod(
+					resObj =  Utilities.callExternalApiGetMethod(
 							getApplicationContext(), map);
+					return resObj;
 					}
 				else{
-					return INVALID_REQUEST;
+					
+					resObj.setFailResponse(100, INVALID_REQUEST);
+					return resObj;
 				}
 			} else {
-				return NETWORK_ERROR;
+				resObj.setFailResponse(100, NETWORK_ERROR);
+				return resObj;
 			}
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
-			super.onPostExecute(result);
+		protected void onPostExecute(ResponseObj resObj) {
+			super.onPostExecute(resObj);
 			Log.d(TAG, "onPostExecute");
-			if (!result.equals("")) {
-				Log.d(TAG, result);
-
-				updateDetails(result, category);
-
-			} else {
-				// set no details for selection
+			if(resObj.getStatusCode()==200){
+     				updateDetails(resObj.getsResponse());
+     				if (mProgressDialog.isShowing()) {
+    					mProgressDialog.dismiss();
+    				}
 			}
-			if (mProgressDialog.isShowing()) {
-				mProgressDialog.dismiss();
-			}
+			else {
+				if (mProgressDialog.isShowing()) {
+					mProgressDialog.dismiss();
+				}
+				AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this,AlertDialog.THEME_HOLO_DARK);
+				// Add the buttons
+				builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { //R.string.ok
+				           public void onClick(DialogInterface dialog, int id) {
+				              //doing nothing
+				           }
+				       });
+
+				AlertDialog dialog =builder.create();
+				dialog.setMessage(resObj.getsErrorMessage());
+				/*TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
+				messageText.setGravity(Gravity.CENTER);*/
+				dialog.show();
+			}			
 		}
 	}
-	public void updateDetails(String result, final String category) {
+	public void updateDetails(String result) {
 		Log.d(TAG, "updateDetails" + result);
 		if (result != null) {
 			final GridViewData gvDataObj = MovieEngine
 					.parseMovieDetails(result);
 			totalPageCount = gvDataObj.getPageCount();
 			pageNumber = gvDataObj.getPageNumber();
+		    TextView page_no = (TextView)findViewById(R.id.home_page_no);
+		    page_no.setText((pageNumber+1)+"/"+totalPageCount);
 			final GridView gridView = (GridView) findViewById(R.id.grid_view);
 			gridView.setAdapter(new CustomGridViewAdapter(gvDataObj
 					.getMovieListObj(), this));
@@ -312,7 +337,7 @@ public class HomeActivity extends FragmentActivity {
 
 		}
 	}
-    private boolean validateDevice(){
+   /* private boolean validateDevice(){
     	
     	androidId = Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID);
     	mPrefsEditor.putString("ANDROID_ID", androidId);
@@ -340,6 +365,6 @@ public class HomeActivity extends FragmentActivity {
 			}
 		}
 		return false;
-    }
+    }*/
 
 }

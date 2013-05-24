@@ -41,9 +41,9 @@ public class Video extends Activity{
 		protected void onPreExecute() {
 			super.onPreExecute();
 			// Create a progressbar
-			pDialog = new ProgressDialog(Video.this);
+			pDialog = new ProgressDialog(Video.this,ProgressDialog.THEME_HOLO_DARK);
 			// Set progressbar title
-			pDialog.setTitle("Android Video Streaming ");
+			//pDialog.setTitle("Android Video Streaming ");
 			// Set progressbar message
 			pDialog.setMessage("Buffering...");
 			pDialog.setIndeterminate(false);

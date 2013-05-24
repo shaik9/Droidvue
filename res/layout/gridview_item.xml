@@ -5,10 +5,11 @@
     android:background="@color/gv_img_selector">
         <com.hugo.imagehandler.SmartImageView
             android:id="@+id/gridview_img"
-            android:adjustViewBounds="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"/>
+            android:layout_width="100dp"
+            android:layout_height="135dp"
+            android:layout_margin="4dp"
+            android:src="@drawable/default_img"
+            android:scaleType="fitXY"/>
            
         <RatingBar
         android:id="@+id/gridview_rating_bar"
