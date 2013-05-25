@@ -75,9 +75,9 @@
                 android:background="@color/search_text_selector"
                 android:paddingLeft="15dp"
                 android:textColor="#FFFFFF"
-                android:textCursorDrawable="@null" >
+                android:textCursorDrawable="@null"
+                android:nextFocusRight="@+id/search_btn" >
 
-                <requestFocus />
             </EditText>
 
             <TextView
