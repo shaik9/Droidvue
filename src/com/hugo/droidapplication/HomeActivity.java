@@ -35,7 +35,7 @@ public class HomeActivity extends FragmentActivity {
 	private final static String NETWORK_ERROR = "Network error.";
 	private final static String INVALID_REQUEST = "INVALID_REQUEST";
 
-	private SharedPreferences mPrefs;
+	private SharedPreferences mPrefs; 
 	private ProgressDialog mProgressDialog;
 	private TextView mMenuName;
 	private ListView mlistView;
