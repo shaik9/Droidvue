@@ -6,7 +6,7 @@
     android:background="@drawable/home_bg"
     android:orientation="horizontal"
     tools:context=".HomeActivity" >
-
+    
   <RelativeLayout
             android:id="@+id/mvdtls_rlayout1"
             android:layout_width="fill_parent"
@@ -75,26 +75,31 @@
             android:typeface="sans"
             android:textSize="25sp"/>
 
+        <ScrollView 
+        	android:id="@+id/ScrollView_tv" 
+        	android:layout_height="130dp" 
+        	android:layout_alignParentRight="true"
+        	android:layout_below="@+id/mvdtls_title_tv"
+        	android:fadeScrollbars="false"
+            android:layout_toRightOf="@+id/mvdtls_mov_img"
+        	android:layout_width="wrap_content"> 
         <TextView
             android:id="@+id/mvdtls_descr_tv"
             android:layout_width="wrap_content"
             android:layout_height="130dp"
-            android:layout_alignParentRight="true"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="20dp"
-            android:layout_below="@+id/mvdtls_title_tv"
-            android:layout_toRightOf="@+id/mvdtls_mov_img"
             android:textColor="#FFFFFF"
             android:lineSpacingExtra="0.5dp"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
-            
+            </ScrollView>
          <TableLayout
              android:id="@+id/mvdtls_tab_layout"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_alignParentRight="true"
-             android:layout_below="@+id/mvdtls_descr_tv"
+             android:layout_below="@+id/ScrollView_tv"
              android:layout_marginLeft="30dp"
              android:layout_marginRight="5dp"
              android:layout_marginBottom="10dp"
@@ -261,6 +266,8 @@
              android:background="@color/rent_btn_selector"
              android:textColor="#FFFFFF"
              android:layout_margin="5dp"
+             android:paddingLeft="5dp"
+             android:paddingRight="5dp"
              android:text="@string/hdx"
              android:onClick="ButtonOnClick"/>
          <Button
@@ -274,6 +281,8 @@
              android:visibility="gone"
              android:textColor="#FFFFFF"
              android:layout_margin="5dp"
+             android:paddingLeft="5dp"
+             android:paddingRight="5dp"
              android:text="@string/hd"
              
              android:onClick="ButtonOnClick" />
@@ -287,6 +296,8 @@
              android:background="@color/rent_btn_selector"
              android:visibility="gone"
              android:layout_margin="5dp"
+             android:paddingLeft="5dp"
+             android:paddingRight="5dp"
              android:textColor="#FFFFFF"
              android:text="@string/sd"
              android:onClick="ButtonOnClick" />  
