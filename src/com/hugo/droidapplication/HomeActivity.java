@@ -1,6 +1,7 @@
 package com.hugo.droidapplication;
 
 import java.util.HashMap;
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -11,8 +12,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -41,7 +42,7 @@ public class HomeActivity extends FragmentActivity {
 	private ListView mlistView;
 	private Editor mPrefsEditor;
 	private EditText mSearchEt;
-	private Button mSearchBtn;
+	private TextView mSearchBtn;
 	String category = "";
 	int totalPageCount;
 	int pageNumber;
@@ -68,7 +69,7 @@ public class HomeActivity extends FragmentActivity {
         
 		mMenuName = (TextView) findViewById(R.id.tv_menuname);
 		mSearchEt = (EditText) findViewById(R.id.search_et);
-		mSearchBtn = (Button) findViewById(R.id.search_btn);
+		mSearchBtn = (TextView) findViewById(R.id.search_btn);
 		mlistView = (ListView) findViewById(R.id.listView);
 
 		mlistView.setDivider(null);
@@ -146,6 +147,14 @@ public class HomeActivity extends FragmentActivity {
 							
 					}
 				});
+		
+		/*mSearchBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				onSearchButtonClick(v);
+			}
+		});*/
 	}
 	
 	public void onSearchButtonClick(View v) {

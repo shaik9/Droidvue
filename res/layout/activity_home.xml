@@ -26,7 +26,6 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="130dp" >
         </ListView>
-
     </LinearLayout>
 
     <LinearLayout
@@ -64,33 +63,38 @@
             android:background="@drawable/search_bg"
             android:visibility="visible" >
 
-            <Button
-                android:id="@+id/search_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="10dp"
-                android:padding="5dp"
-                android:background="@color/search_btn_selector"
-                android:onClick="onSearchButtonClick"
-                android:text="@string/search"
-                android:textColor="#FFFFFF" />
-
             <EditText
                 android:id="@+id/search_et"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_toLeftOf="@+id/search_btn"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
+                android:layout_toLeftOf="@+id/search_btn"
                 android:background="@color/search_text_selector"
                 android:paddingLeft="15dp"
                 android:textColor="#FFFFFF"
                 android:textCursorDrawable="@null" >
+
+                <requestFocus />
             </EditText>
+
+            <TextView
+                android:id="@+id/search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/search_et"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/search_et"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:background="@color/search_btn_selector"
+                android:onClick="onSearchButtonClick"
+                android:clickable="true"
+                android:padding="5dp"
+                android:text="@string/search"
+                android:textColor="#FFFFFF" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -138,11 +142,14 @@
                 android:id="@+id/grid_view"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_above="@+id/home_page_no"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/rt_button"
                 android:layout_toRightOf="@+id/lf_button"
                 android:columnWidth="100dp"
+                android:gravity="center"
                 android:horizontalSpacing="5dp"
+                android:nextFocusRight="@+id/rt_button"
                 android:numColumns="5"
                 android:stretchMode="spacingWidthUniform"
                 android:verticalSpacing="35dp" >
