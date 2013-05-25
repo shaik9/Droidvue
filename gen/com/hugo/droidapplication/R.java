@@ -391,12 +391,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int action_settings=0x7f090031;
         public static final int bottom=0x7f090003;
         public static final int frag_rel_layout=0x7f09000b;
-        public static final int grid_view=0x7f09000d;
+        public static final int grid_view=0x7f09000e;
         public static final int gridview_img=0x7f090010;
         public static final int gridview_rating_bar=0x7f090011;
         public static final int home_listview_layout=0x7f090005;
-        public static final int home_page_no=0x7f09000f;
-        public static final int lf_button=0x7f09000c;
+        public static final int home_page_no=0x7f09000c;
+        public static final int lf_button=0x7f09000d;
         public static final int listView=0x7f090006;
         public static final int list_content=0x7f090012;
         public static final int mvdtls_cast_lbl_tv=0x7f09002a;
@@ -429,7 +429,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int mvdtls_writby_tab_row=0x7f09001d;
         public static final int mvdtls_writby_val_tv=0x7f09001f;
         public static final int none=0x7f090000;
-        public static final int rt_button=0x7f09000e;
+        public static final int rt_button=0x7f09000f;
         public static final int search_btn=0x7f09000a;
         public static final int search_et=0x7f090009;
         public static final int srch_layout=0x7f090008;
