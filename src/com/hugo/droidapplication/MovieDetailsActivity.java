@@ -7,28 +7,24 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.hugo.imagehandler.SmartImageView;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MovieDetailsActivity extends FragmentActivity {
+
+public class MovieDetailsActivity extends Activity {
 
 	private static final String TAG = "MovieDetailsActivity";
-	public final static String PREFS_FILE = "PREFS_FILE";
 	private final static String NETWORK_ERROR = "NETWORK_ERROR";
 	private final static String GETMOVIEDETAILS = "GETMOVIEDETAILS";
 	private final static String BOOKORDER = "BOOKORDER";

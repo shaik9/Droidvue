@@ -2,6 +2,7 @@ package com.hugo.droidapplication;
 
 import java.util.HashMap;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -10,11 +11,11 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,10 +24,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends Activity {
 
 	private static final String TAG = "HomeActivity";
 	public final static String PREFS_FILE = "PREFS_FILE";
@@ -36,18 +39,19 @@ public class HomeActivity extends FragmentActivity {
 	private final static String NETWORK_ERROR = "Network error.";
 	private final static String INVALID_REQUEST = "INVALID_REQUEST";
 
-	private SharedPreferences mPrefs; 
+	private SharedPreferences mPrefs;
 	private ProgressDialog mProgressDialog;
 	private TextView mMenuName;
 	private ListView mlistView;
 	private Editor mPrefsEditor;
 	private EditText mSearchEt;
-	private TextView mSearchBtn;
+    private ImageButton imgSearchBtn;
 	String category = "";
 	int totalPageCount;
 	int pageNumber;
 	private String mActionName; 
 	String androidId;
+	private Activity activity;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class HomeActivity extends FragmentActivity {
 
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
+		activity = this;
 		Log.d(TAG, "onCreate");
         
 		mPrefs = getSharedPreferences(HomeActivity.PREFS_FILE, 0);
@@ -69,8 +74,27 @@ public class HomeActivity extends FragmentActivity {
         
 		mMenuName = (TextView) findViewById(R.id.tv_menuname);
 		mSearchEt = (EditText) findViewById(R.id.search_et);
-		mSearchBtn = (TextView) findViewById(R.id.search_btn);
 		mlistView = (ListView) findViewById(R.id.listView);
+		final RelativeLayout searchLayout = (RelativeLayout) findViewById(R.id.srch_layout);
+		imgSearchBtn = (ImageButton) findViewById(R.id.imageSearch);
+		imgSearchBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(searchLayout.getVisibility() == View.INVISIBLE)
+				{
+					searchLayout.setVisibility(View.VISIBLE);
+					Animation anim = AnimationUtils.loadAnimation(activity, R.anim.alpha_in);
+					searchLayout.startAnimation(anim);
+				}
+				else
+				{
+					searchLayout.setVisibility(View.INVISIBLE);
+					Animation anim = AnimationUtils.loadAnimation(activity, R.anim.alpha_out);
+					searchLayout.startAnimation(anim);
+				}
+			}
+		});
 
 		mlistView.setDivider(null);
 		mlistView.setSelector(R.color.listgrad);
@@ -147,14 +171,6 @@ public class HomeActivity extends FragmentActivity {
 							
 					}
 				});
-		
-		/*mSearchBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				onSearchButtonClick(v);
-			}
-		});*/
 	}
 	
 	public void onSearchButtonClick(View v) {
@@ -310,7 +326,7 @@ public class HomeActivity extends FragmentActivity {
 
 				}
 			});
-			findViewById(R.id.srch_layout).setVisibility(View.VISIBLE);
+//			findViewById(R.id.srch_layout).setVisibility(View.VISIBLE);
 			findViewById(R.id.frag_rel_layout).setVisibility(View.VISIBLE);
 			
 			Button left_btn = (Button) findViewById(R.id.lf_button);
