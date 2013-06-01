@@ -40,4 +40,5 @@
     <string name="hdx">HDX</string>
     <string name="hd">HD</string>
     <string name="sd">SD</string>  
+    <string name="description">Media Controls</string>
     </resources>

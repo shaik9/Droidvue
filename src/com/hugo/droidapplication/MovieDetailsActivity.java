@@ -7,6 +7,8 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.hugo.imagehandler.SmartImageView;
+import com.hugo.videoplayer.*;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -37,7 +39,6 @@ public class MovieDetailsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mvdtls_activity);
 
@@ -194,8 +195,10 @@ public class MovieDetailsActivity extends Activity {
 					if (mProgressDialog.isShowing()) {
 						mProgressDialog.dismiss();
 					}
+					/*Intent intent = new Intent(MovieDetailsActivity.this,
+							Video.class);*/
 					Intent intent = new Intent(MovieDetailsActivity.this,
-							Video.class);
+							VideoPlayerActivity.class);
 					try {
 						intent.putExtra("url",
 								((String) (new JSONObject(resObj.getsResponse()))
