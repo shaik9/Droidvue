@@ -1,9 +1,13 @@
 package com.hugo.videoplayer;
 
 import java.io.IOException;
-
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import com.hugo.droidapplication.R;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -34,7 +38,6 @@ public class VideoPlayerActivity extends Activity implements
       
 		player = new MediaPlayer();
 		controller = new VideoControllerView(this);
-
 		try {
 			player.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			player.setVolume(1.0f, 1.0f);
@@ -147,18 +150,18 @@ public class VideoPlayerActivity extends Activity implements
 		return false;
 	}
 
-	@Override
+	/*@Override
 	public void toggleFullScreen() {
 
-	}
+	}*/
 
 	// End VideoMediaController.MediaPlayerControl
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			int remaintime = player.getDuration()-player.getCurrentPosition();
 			player.stop();
-			player.release();
-			VideoPlayerActivity.this.finish();
+			player.release();	
 		} else if (keyCode == 85) {
 			controller.show();
 			if (player.isPlaying()) {

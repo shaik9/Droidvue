@@ -2,6 +2,8 @@ package com.hugo.droidapplication;
 
 import java.util.HashMap;
 
+import com.hugo.videoplayer.VideoPlayerActivity;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -12,6 +14,7 @@ import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -35,8 +38,8 @@ public class HomeActivity extends Activity {
 	public final static String PREFS_FILE = "PREFS_FILE";
 	private final static String GETMOVIEDETAILSBYCATEGORY_ACTION = "GET_MOVIE_DETAILS_BY_CATEGORY";
 	private final static String GETMOVIEDETAILSBYSEARCH_ACTION = "GET_MOVIE_DETAILS_BY_SEARCH";
-	private final static String GETDEVICEID_ACTION = "GET_MOVIE_DETAILS_BY_SEARCH";
-	private final static String NETWORK_ERROR = "Network error.";
+	private final static String GETDEVICEID_ACTION = "GETDEVICEID_ACTION";
+	private final static String NETWORK_ERROR = "NETWORK_ERROR";
 	private final static String INVALID_REQUEST = "INVALID_REQUEST";
 
 	private SharedPreferences mPrefs;
@@ -56,7 +59,7 @@ public class HomeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
 		activity = this;
@@ -279,11 +282,18 @@ public class HomeActivity extends Activity {
 
 				AlertDialog dialog =builder.create();
 				dialog.setMessage(resObj.getsErrorMessage());
-				/*TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
-				messageText.setGravity(Gravity.CENTER);*/
 				dialog.show();
 			}			
 		}
+	}
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			this.finish();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 	public void updateDetails(String result) {
 		Log.d(TAG, "updateDetails" + result);
@@ -362,34 +372,4 @@ public class HomeActivity extends Activity {
 
 		}
 	}
-   /* private boolean validateDevice(){
-    	
-    	androidId = Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID);
-    	mPrefsEditor.putString("ANDROID_ID", androidId);
-    	String json="";
-		mActionName = GETDEVICEID_ACTION;
-		try {
-			json = new GetDetailsAsynTask().get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		if(json.length()!=0){
-			JSONObject deviceDtls;
-			try {
-				deviceDtls = new JSONObject(json);
-				mPrefsEditor.putString("deviceId",deviceDtls.getString("deviceId"));
-				mPrefsEditor.putString("clientId",deviceDtls.getString("clientId"));
-				mPrefsEditor.putString("clientType",deviceDtls.getString("clientType"));
-				mPrefsEditor.putString("clientTypeId",deviceDtls.getString("clientTypeId"));
-				mPrefsEditor.commit();
-				return true;
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
-    }*/
-
 }
